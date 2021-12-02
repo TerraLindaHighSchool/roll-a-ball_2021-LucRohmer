@@ -7,6 +7,7 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 0;
+    private float jumpForce = 500;
     public TextMeshProUGUI countText;
     public GameObject winTextObject;
 
@@ -57,5 +58,10 @@ public class PlayerController : MonoBehaviour
 
             SetCountText();
         }
+    }
+
+    void OnJump()
+    {
+        rb.AddForce(new Vector3(0, jumpForce, 0));
     }
 }
