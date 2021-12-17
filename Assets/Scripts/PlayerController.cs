@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     private int count;
     private float movementX;
     private float movementY;
+    private Vector3 spawnPoint;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,14 +58,19 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
-        
+
         rb.AddForce(movement * speed);
         if (movementX > 0 || movementY > 0)
         {
             titleText.SetActive(false);
         }
-    }
 
+
+        if (gameObject.transform.position.y < -120)
+        {
+            gameObject.transform.position = spawnPoint;
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("PickUp"))
